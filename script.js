@@ -8,7 +8,7 @@
      1. DATA              – all editable content
      2. Helpers           – $, el, esc, SECTIONS
      3. Static content    – fills the hero, services, skills, background, etc.
-     4. Project popup     – details modal with the image carousel
+     4. Project popup     – details modal with the image carousel + image viewer
      5. Certificate popup – PDF / image viewer
      6. Projects grid     – category filter, "See more", cards
      7. Contact form      – builds a mailto: link
@@ -34,18 +34,17 @@ const DATA = {
   available: "Open for clients",        // status text in the sidebar
   tagline: "IT | Freelancer",
   nicknames: ["Ahyan"],                 // clicking a nickname swaps it with my name
-  intro: "I’m a freelancer with a background in IT. I’m currently focused on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
+  intro: "I’m a freelancer with a background in IT. I’m currently focusing on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
 
   /* --- Social links (shown under the hero) --- */
   socials: [
-    { label: "instagram", url: "https://www.instagram.com/ahyanaheim?srtk=YWJjd2xieXoweHYx" },
     { label: "linkedin", url: "https://www.linkedin.com/in/adrian-marie-cabaluna-a42555386/?isSelfProfile=true" },
     { label: "onlinejobs.ph", url: "https://v2.onlinejobs.ph/jobseekers/info/5465586" }
   ],
 
   /* --- Quick stats bar under the hero --- */
   stats: [
-    { value: "3rd yr", label: "BSIT student" },
+    { value: "10+", label: "Completed Projects" },
     { value: "24h", label: "Reply time" },
     { value: "3", label: "Areas of support" }
   ],
@@ -63,9 +62,10 @@ const DATA = {
      "learn" = still in progress. */
   skills: [
     { group: "Tech Stack", items: [["HTML & CSS", "use"], ["JavaScript", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
-    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Vercel", "use"], ["Buffer", "learn"], ["Notion", "learn"], ["Zapier / automation", "learn"]] },
+    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Render", "use"], ["Vercel", "use"], ["Buffer", "learn"], ["Notion", "learn"], ["Go High Level", "learn"], ["Zapier", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Inquiry Handling", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Time Zone Coordination", "use"], ["Client communication", "use"]] }
   ],
+
   /* --- Projects ---
      Fields:
        title / category / year / status / role / stack[] / summary / details
@@ -74,13 +74,15 @@ const DATA = {
        image      – card thumbnail (and the only slide if "images" is missing)
        images[]   – optional list of images for the popup carousel
        featured   – true = appears under the ★ "Main projects" tab
+       wide       – true = screenshot-style images: the current image fills the
+                    carousel and neighbours fade out (use for Trello, Jira, inbox shots)
        note       – optional highlighted note inside the popup
        Links shown in the popup when filled in:
          demo, repo, wiki, trailer, X, Canva, Facebook, Medium */
-  projectsNote: "Client-based and personal builds across Development, Media Creation and Management.",
+  projectsNote: "Academic and Client-based projects across Development, Media Creation and Management.",
   projects: [
     { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", role: "Backend programmer",
-      stack: ["IoT", "Telemetry", "Game"], image: "asset/asset/taply.png",
+      stack: ["IoT", "Telemetry", "Unity"], image: "asset/asset/taply.png",
       summary: "An aquarium game connected to smart faucets: a household's water usage becomes part of the gameplay, to encourage saving water.",
       details: [
         "Capstone project built by a team; I am the backend programmer.",
@@ -96,8 +98,8 @@ const DATA = {
         "Made with PHP, HTML, CSS and JavaScript for a course on event-driven programming, so the pages react to user actions like clicks and form submissions.",
         "The code is on GitHub; it has not been deployed online."
       ],
-      repo: "https://github.com/hyanarchy/dorm-ni-kuya", demo: "" },
-    { title: "2K2J", featured: true, category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
+      repo: "https://github.com/dpcmd/dorm", demo: "" },
+    { title: "2K2J",  category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
       stack: ["PHP", "HTML", "CSS", "JavaScript"], image: "asset/asset/2k2j.jpg",
       summary: "A web-based system built for a Web Development course.",
       details: [
@@ -106,8 +108,8 @@ const DATA = {
         "It has not been deployed online; the full code is on GitHub."
       ],
       repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
-    { title: "VTHK", featured: true, category: "Media Creation", year: "2026", status: "Ongoing", role: "Head Creatives Officer",
-      stack: ["Graphic Design", "Social Media Management", "Community Management"],
+    { title: "VTHK", featured: true, category: "Media Creation", year: "2026", status: "Ongoing", role: "Head Creatives",
+      stack: ["Canva", "Photoshop"],
       image: "asset/asset/INTERSECTION1.jpg",
       images: ["asset/asset/INTERSECTION1.jpg", "asset/asset/INTERSECTION2.jpg", "asset/asset/INTERSECTION_BANNERS.jpg",
         "asset/asset/BOOTH POSTER.jpg", "asset/asset/EVENT1.jpg",
@@ -122,35 +124,37 @@ const DATA = {
       ],
       Facebook: "https://www.facebook.com/PLVVTHK", Canva: "https://www.canva.com/design/DAHZR1lHDLI/UJ_PvLLrQIWEJ6SNtEOt3A/edit" },
     { title: "Link-In", category: "Media Creation", year: "2026", status: "Completed", role: "Director",
-      stack: ["Directing", "Production", "Management"], image: "asset/asset/linkin.png",
+      stack: ["Directing", "Script writing"], image: "asset/asset/linkin.png",
       summary: "A film made for the IT Film Fest at our school.",
       details: [
         "I was the director and led the whole film from pre-production to post-production.",
-        "That meant planning and preparing the shoot, directing the production, and overseeing the editing and finishing of the film.",
+        "That meant planning and preparing the shoot, directing the production, and overseeing the editing and finishing of the film."
       ],
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
       trailer: "https://www.facebook.com/reel/1892957314745360",
       repo: "", demo: "" },
     { title: "NFT Projects", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
-  stack: ["Content Creation", "Graphic Design", "Community Management"],
-  image: "asset/asset/rebels.jpg",
-  images: ["asset/asset/rebels.jpg", "asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg",
-    "asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg", "asset/asset/shamanz.jpg"],
-  summary: "Content and community work for four NFT projects: Rebels, Lost Eden, Lonely Pop and Shamanz.",
-  details: [
-    "Rebels: a digital art NFT collection by Night Labs with dynamic NFTs, designed as a form of digital identity and self-expression.",
-    "Lost Eden: a Web3 gaming and esports project with the Lost Eden Origins NFT collection, where holder benefits connect to its gaming ecosystem.",
-    "Lonely Pop: an art-centered NFT collection inspired by personal experiences with loneliness and mental health.",
-    "Shamanz: an NFT project inspired by shamanic imagery and mystical themes.",
-    "For all four, I made content and graphics for the project's online presence, and posted and engaged with the community on X and Discord."
-  ],
-  links: [
-    { label: "Rebels", url: "https://x.com/rebelsbynight" },
-    { label: "Lonely Pop", url: "https://x.com/LonelyPopNFT" },
-    { label: "Shamanz", url: "https://medium.com/@shamanzs" }
-  ] },
-    { title: "Mindweaver", featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
-      stack: ["Jira", "Scrum", "Discord"], image: "asset/asset/mindweaver.jpg",
+      stack: ["Graphic Design", "Canva", "Photoshop"],
+      image: "asset/asset/rebels.jpg",
+      images: ["asset/asset/rebels.jpg", "asset/asset/losteden1.jpg", "asset/asset/losteden2.jpg",
+        "asset/asset/lonelypop1.jpg", "asset/asset/lonelypop2.jpg", "asset/asset/shamanz.jpg"],
+      summary: "Content and community work for four NFT projects: Rebels, Lost Eden, Lonely Pop and Shamanz.",
+      details: [
+        "Rebels: a digital art NFT collection by Night Labs with dynamic NFTs, designed as a form of digital identity and self-expression.",
+        "Lost Eden: a Web3 gaming and esports project with the Lost Eden Origins NFT collection, where holder benefits connect to its gaming ecosystem.",
+        "Lonely Pop: an art-centered NFT collection inspired by personal experiences with loneliness and mental health.",
+        "Shamanz: an NFT project inspired by shamanic imagery and mystical themes.",
+        "For all four, I made content and graphics for the project's online presence, and posted and engaged with the community on X and Discord."
+      ],
+      links: [
+        { label: "Rebels", url: "https://x.com/rebelsbynight" },
+        { label: "Lonely Pop", url: "https://x.com/LonelyPopNFT" },
+        { label: "Shamanz", url: "https://medium.com/@shamanzs" }
+      ] },
+    { title: "Bytecode Studios", wide: true, featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
+      stack: ["Jira", "Scrum", "Discord"], 
+      image: "asset/asset/bytecodestudios-logo.jpg",
+      images: ["asset/asset/jira2.png", "asset/asset/jira.png"],
       summary: "A tabletop game that the team is developing into a digital hybrid version.",
       details: [
         "I am the project manager and keep the team coordinated.",
@@ -158,7 +162,15 @@ const DATA = {
         "I track progress in Jira and keep the team in sync on Discord."
       ],
       repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
-    
+    { title: "VTHK", featured: true, wide: true, category: "Management", year: "2026", status: "Ongoing", role: "Content and Email Management",
+      stack: ["Trello", "Email", "Messenger"],
+      image: "asset/asset/vthk.png",
+      images: ["asset/asset/email.png",  "asset/asset/reply.png", "asset/asset/trelo.png"],
+      summary: "Managed VTHK’s event, content, seminar, and workshop emails.",
+      details: [
+        "I used labels and priority sorting so registrations, invitations, and deadlines were handled on time.",
+        "Tracked tasks and follow-ups on a Trello board, with cards moving from To Do to In Progress to Done for each event, seminar, and attendance form."
+      ] }
   ],
 
   /* --- Background ---
@@ -166,7 +178,6 @@ const DATA = {
      popup (PDFs load in an iframe, images load in an <img>). */
   background: [
     { group: "Experience", items: [
-      { title: "Technical Committee", text: "Valenzuela Information Technology Society", meta: "2026" },
       { title: "Head Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" },
       { title: "Social Media and Content Creation", text: "Insightblitz Solutions, @xis_NFT", meta: "2025" },
       { title: "Digital Marketing", text: "NFT Communities", meta: "2022" }
@@ -178,7 +189,7 @@ const DATA = {
     { group: "Certificates", items: [
       { title: "Introduction to Digital Marketing", text: "TESDA, Digital Marketing lll", meta: "2026", file: "asset/asset/digital_marketing_cert.pdf" },
       { title: "Web Development Fundamentals", text: "IBM", meta: "2026", file: "asset/asset/IBM_cert.pdf" },
-      { title: "Fundamentals of Artificial Intelligence", text: "TESDA, Amazon Web Services", meta: "2026", file: "asset/asset/ai_cert.pdf" },
+      { title: "Fundamentals of Artificial Intelligence", text: "TESDA, Amazon Web Services", meta: "2026", file: "asset/asset/ai_cert.pdf" }
     ] },
     { group: "Seminars", items: [
       { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025", file: "asset/asset/seminars-and-colloquia.jpg" }
@@ -281,7 +292,7 @@ $("#mobnav").innerHTML = SECTIONS.map(s => `<a href="#${s[0]}" data-s="${s[0]}">
 
 
 /* ==========================================================================
-   4. Project popup (details + image carousel)
+   4. Project popup (details + image carousel + full-screen image viewer)
    ========================================================================== */
 // Build the modal once and reuse it for every project
 const pm = el("div", "pmodal");
@@ -292,18 +303,80 @@ const pbox = pm.querySelector(".pbox"), pbody = pm.querySelector(".pbody");
 let lastCard = null;   // card that opened the popup, so focus can return to it on close
 let pStep = null;      // carousel "next/previous" function, used by the arrow keys (null if only one image)
 
+/* ----- Image viewer: opens a carousel image full-screen, with zoom -----
+   Styles for it (.lbox, .lb-*) live in style.css. */
+const lb = el("div", "lbox");
+lb.setAttribute("role", "dialog");
+lb.setAttribute("aria-modal", "true");
+lb.setAttribute("aria-label", "Image viewer");
+lb.innerHTML = `<button class="lb-x" type="button" aria-label="Close image">×</button><div class="lb-stage"><img alt=""></div><div class="lb-bar"><button class="pill lb-prev" type="button" aria-label="Previous image">←</button><span class="lb-count"></span><button class="pill lb-zoom" type="button">Zoom in</button><button class="pill lb-next" type="button" aria-label="Next image">→</button></div>`;
+document.body.appendChild(lb);
+
+const vImg = lb.querySelector("img"), vCount = lb.querySelector(".lb-count"), vZoom = lb.querySelector(".lb-zoom");
+let vImgs = [], vI = 0, vTitle = "", vDone = null;
+
+// Show the current image in the viewer (always starts un-zoomed, scrolled to the top)
+function vShow() {
+  vImg.src = vImgs[vI];
+  vImg.alt = vTitle + " image " + (vI + 1);
+  vCount.textContent = (vI + 1) + " / " + vImgs.length;
+  lb.classList.remove("zoom");
+  vZoom.textContent = "Zoom in";
+  lb.querySelector(".lb-stage").scrollTo(0, 0);
+}
+const vStep = d => { vI = (vI + d + vImgs.length) % vImgs.length; vShow(); };
+
+function openViewer(imgs, i, title, done) {
+  vImgs = imgs; vI = i; vTitle = title; vDone = done;
+  lb.classList.toggle("single", imgs.length < 2);
+  vShow();
+  lb.classList.add("open");
+  lb.querySelector(".lb-x").focus();
+}
+
+function closeViewer() {
+  if (!lb.classList.contains("open")) return;
+  lb.classList.remove("open", "zoom");
+  vImg.removeAttribute("src");
+  if (vDone) vDone(vI);   // the carousel jumps to the image the client was viewing
+}
+
+const vToggleZoom = () => {
+  lb.classList.toggle("zoom");
+  vZoom.textContent = lb.classList.contains("zoom") ? "Fit to screen" : "Zoom in";
+};
+
+vImg.onclick = vToggleZoom;
+vZoom.onclick = vToggleZoom;
+lb.querySelector(".lb-prev").onclick = () => vStep(-1);
+lb.querySelector(".lb-next").onclick = () => vStep(1);
+lb.querySelector(".lb-x").onclick = closeViewer;
+lb.onclick = e => { if (e.target === lb || e.target.classList.contains("lb-stage")) closeViewer(); };
+
+// Capture phase, so Esc and the arrow keys control the viewer and not the popup behind it
+document.addEventListener("keydown", e => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") closeViewer();
+  else if (e.key === "ArrowRight") vStep(1);
+  else if (e.key === "ArrowLeft") vStep(-1);
+  else return;
+  e.stopImmediatePropagation();
+}, true);
+
 function openProject(p, card) {
   // Only show link buttons for fields that are filled in
- const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"], ["X", "X"], ["Canva", "Canva"], ["Facebook", "Facebook"], ["Medium", "Medium"]]
-  .filter(l => p[l[0]]).map(l => ({ label: l[1], url: p[l[0]] }))
-  .concat(p.links || [])
-  .map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
+  const links = [["demo", "Live demo"], ["repo", "GitHub"], ["wiki", "Wiki"], ["trailer", "Trailer"], ["X", "X"], ["Canva", "Canva"], ["Facebook", "Facebook"], ["Medium", "Medium"]]
+    .filter(l => p[l[0]]).map(l => ({ label: l[1], url: p[l[0]] }))
+    .concat(p.links || [])
+    .map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
 
   // Use the "images" list if there is one, otherwise just the card image.
   // Arrows and dots are only built when there is more than one image.
+  // p.wide = screenshot mode (see the .pcar.wide rules in style.css).
   const imgs = (p.images || [p.image]).filter(Boolean), multi = imgs.length > 1;
+  const zoomable = p.category === "Media Creation" || p.category === "Management";
   const car = imgs.length
-    ? `<div class="pcar${multi ? " multi" : ""}"><div class="pstage">${imgs.map(src => `<div class="pslide"><img src="${esc(src)}" alt="${esc(p.title)} artwork"></div>`).join("")}</div>${multi ? `<div class="cnav"><button class="pill pprev" type="button" aria-label="Previous image">←</button><div class="dots pdots">${imgs.map(() => "<i></i>").join("")}</div><button class="pill pnext" type="button" aria-label="Next image">→</button></div>` : ""}</div>`
+    ? `<div class="pcar${multi ? " multi" : ""}${p.wide ? " wide" : ""}${zoomable ? " zoomable" : ""}"><div class="pstage">${imgs.map(src => `<div class="pslide"><img src="${esc(src)}" alt="${esc(p.title)} artwork"></div>`).join("")}</div>${multi ? `<div class="cnav"><button class="pill pprev" type="button" aria-label="Previous image">←</button><div class="dots pdots">${imgs.map(() => "<i></i>").join("")}</div><button class="pill pnext" type="button" aria-label="Next image">→</button></div>` : ""}${zoomable ? `<p class="phint">Click an image to read it full size</p>` : ""}</div>`
     : `<div class="pcar"><div class="thumb">no preview yet</div></div>`;
 
   // Popup layout: carousel on the left, project info on the right
@@ -312,15 +385,15 @@ function openProject(p, card) {
     <div class="top"><span>${esc(p.category)} · ${esc(p.year)}</span><span>${esc(p.status || "")}</span></div>
     <h3>${esc(p.title)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}
     <p class="psum">${esc(p.summary)}</p>
-        ${Array.isArray(p.details)
+    ${Array.isArray(p.details)
       ? `<ul class="pdetails">${p.details.map(d => `<li>${esc(d)}</li>`).join("")}</ul>`
       : `<p>${esc(p.details)}</p>`}
     ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
     <div class="ptags">${p.stack.map(s => `<span class="tag">${esc(s)}</span>`).join("")}</div>
     ${links ? `<p class="plinks">${links}</p>` : ""}</div></div>`;
 
-  // Carousel: the centre image is large, its neighbours peek out on each side,
-  // and the whole image is always visible (object-fit: contain in the CSS).
+  // Carousel: the centre image is large, its neighbours peek out on each side
+  // (or fade out in wide mode), and the whole image is always visible (object-fit: contain in the CSS).
   const slides = [...pbody.querySelectorAll(".pslide")];
   let ci = 0;   // index of the current (centre) slide
 
@@ -340,13 +413,18 @@ function openProject(p, card) {
   paint();
   pStep = multi ? step : null;
 
+  // Click a side image to bring it to the centre.
+  // Click the centre image to open it full-screen (works for single-image projects too).
+  slides.forEach((sl, i) => {
+    sl.onclick = () => {
+      if (i !== ci) { ci = i; paint(); }
+      else if (zoomable) openViewer(imgs, ci, p.title, n => { ci = n; paint(); });    };
+  });
+
   if (multi) {
     // Arrow buttons
     pbody.querySelector(".pprev").onclick = () => step(-1);
     pbody.querySelector(".pnext").onclick = () => step(1);
-
-    // Clicking a peeking slide brings it to the centre
-    slides.forEach((sl, i) => { sl.onclick = () => { if (i !== ci) { ci = i; paint(); } }; });
 
     // Swipe left/right on touch screens (ignore small movements under 40px)
     let x0 = null;
@@ -787,6 +865,8 @@ const LIVE = {
   document.addEventListener('visibilitychange', () => { if (!document.hidden && !reduce) requestAnimationFrame(draw); });
   requestAnimationFrame(draw);
 })();
+
+
 /* ==========================================================================
    14. Guided tour – small arrow tips (no overlay)
    - 3 tips: Work with me / See my work, the menu, the theme button.

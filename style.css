@@ -338,6 +338,24 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
 .dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
 .dots i.on{background:var(--acc);box-shadow:0 0 8px var(--acc)}
 
+/* Wide mode: for screenshots. The image fills the stage and the neighbours fade out. */
+.pcar.wide .pstage{height:auto;aspect-ratio:16/10;max-height:62vh}
+.pcar.wide .pslide{width:100%}
+.pcar.wide .pslide[data-pos="-1"],
+.pcar.wide .pslide[data-pos="1"]{transform:translateX(-50%);opacity:0;pointer-events:none}
+.pgrid:has(.pcar.wide){grid-template-columns:1.5fr 1fr}
+
+/* Full-screen image viewer (zoom to read small text) */
+.lbox{position:fixed;inset:0;z-index:9999;display:none;flex-direction:column;background:rgba(5,5,10,.95)}
+.lbox.open{display:flex}
+.lb-stage{flex:1;overflow:auto;display:flex;padding:16px;min-height:0}
+.lb-stage img{margin:auto;max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;border-radius:8px}
+.lbox.zoom .lb-stage img{max-width:none;max-height:none;width:220%;height:auto;cursor:zoom-out}
+.lb-bar{display:flex;gap:12px;align-items:center;justify-content:center;padding:12px 16px 18px;color:var(--mute)}
+.lbox.single .lb-prev,.lbox.single .lb-next{display:none}
+.lb-x{position:absolute;top:12px;right:12px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:22px}
+.pcar.zoomable .pslide[data-pos="0"]{cursor:zoom-in}
+.phint{margin:10px 0 0;text-align:center;font:12px "JetBrains Mono",monospace;color:var(--mute)}
 
 /* ==========================================================================
    10. Responsive
@@ -435,6 +453,7 @@ form.cform{grid-template-columns:1fr 1fr;gap:22px;max-width:none}
  .pbox.pwide{width:min(100%,420px)}
  .pgrid{grid-template-columns:1fr;gap:14px}
  .pstage{height:36vh}
+  .pbody .pdetails{font-size:12.5px;line-height:1.5;margin-bottom:8px}
 }
 
 /* ----- Very small phones: stack the stats vertically ----- */

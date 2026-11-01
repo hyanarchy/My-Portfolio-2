@@ -21,7 +21,6 @@
     14. Guided tour       – small arrow tips for the main buttons
    ========================================================================== */
 
-
 /* ==========================================================================
    1. DATA – edit this block to update the site
    ========================================================================== */
@@ -32,9 +31,9 @@ const DATA = {
   email: "cabalunaadrianm@gmail.com",
   photo: "asset/asset/mypicture.jpg",
   available: "Open for clients",        // status text in the sidebar
-  tagline: "IT | Freelancer",
+  tagline: "Management & Creative Support",
   nicknames: ["Ahyan"],                 // clicking a nickname swaps it with my name
-  intro: "I’m a freelancer with a background in IT. I’m currently focusing on social media management, and administrative support to help businesses stay organized and maintain their online presence.",
+  intro: "I’m a freelancer focusing on project management, administrative support and social media content creation, helping businesses stay organized and maintain their online presence.",
 
   /* --- Social links (shown under the hero) --- */
   socials: [
@@ -44,7 +43,7 @@ const DATA = {
 
   /* --- Quick stats bar under the hero --- */
   stats: [
-    { value: "10+", label: "Completed Projects" },
+    { value: "10+", label: "Completed Projects" },   // TODO: update to your real number
     { value: "24h", label: "Reply time" },
     { value: "3", label: "Areas of support" }
   ],
@@ -52,7 +51,7 @@ const DATA = {
   /* --- Services ---
      status: "use" shows an "Achieved" tag, anything else shows "In Progress" */
   services: [
-    { title: "Development", text: "Website/App updates, Project Management, Tool Setup, Spreadsheets, QA testing, Troubleshooting...", status: "use" },
+    { title: "Project Management", text: "Scrum and sprint planning, task assignment, progress tracking, team coordination, tool setup (Jira, Trello)...", status: "use" },
     { title: "Admin Support", text: "Email Management, Inbox Organization, calendar handling, data entry, research, document formatting...", status: "use" },
     { title: "Social media support", text: "Content Planning, Social Media Management, Graphics, Caption Writing, Post Scheduling, Content Coordination...", status: "use" }
   ],
@@ -61,53 +60,14 @@ const DATA = {
      Each item is [name, level]. "use" = ready for client work,
      "learn" = still in progress. */
   skills: [
-    { group: "Tech Stack", items: [["HTML & CSS", "use"], ["JavaScript", "use"], ["C#", "use"], ["MySql", "use"], ["Python basics", "use"], ["Cisco Packet Tracer", "use"], ["Git & GitHub", "use"], ["Bootstrap", "learn"], ["WordPress", "learn"]] },
-    { group: "Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["Visual Studio & VS Code", "use"], ["Supabase", "use"], ["JIRA", "use"], ["Trello", "use"], ["Figma", "use"], ["Canva", "use"], ["Capcut", "use"], ["Render", "use"], ["Vercel", "use"], ["Buffer", "learn"], ["Notion", "learn"], ["Go High Level", "learn"], ["Zapier", "learn"]] },
+    { group: "Management Tools", items: [["Google Workspace", "use"], ["Microsoft Office", "use"], ["JIRA", "use"], ["Trello", "use"], ["Scrum & sprint planning", "use"], ["Notion", "learn"], ["Go High Level", "learn"], ["Zapier", "learn"]] },
+    { group: "Creative Tools", items: [["Canva", "use"], ["Photoshop", "use"], ["Figma", "use"], ["Capcut", "use"], ["Buffer", "learn"]] },
     { group: "Client Support", items: [["Email management", "use"], ["Schedule management", "use"], ["Inquiry Handling", "use"], ["Promotional Graphics", "use"], ["Online Community Support", "use"], ["Content calendars", "use"], ["Time Zone Coordination", "use"], ["Client communication", "use"]] }
   ],
 
-  /* --- Projects ---
-     Fields:
-       title / category / year / status / role / stack[] / summary / details
-       summary    – one sentence: what the project is
-       details    – a list of short points: what I did, with which tools (a plain string also works)
-       image      – card thumbnail (and the only slide if "images" is missing)
-       images[]   – optional list of images for the popup carousel
-       featured   – true = appears under the ★ "Main projects" tab
-       wide       – true = screenshot-style images: the current image fills the
-                    carousel and neighbours fade out (use for Trello, Jira, inbox shots)
-       note       – optional highlighted note inside the popup
-       Links shown in the popup when filled in:
-         demo, repo, wiki, trailer, X, Canva, Facebook, Medium */
-  projectsNote: "Academic and Client-based projects across Development, Media Creation and Management.",
+  /* --- Projects --- */
+  projectsNote: "Academic and Client-based projects across Media Creation and Management.",
   projects: [
-    { title: "TAPLY", category: "Development", year: "2026", status: "Ongoing", role: "Backend programmer",
-      stack: ["IoT", "Telemetry", "Unity"], image: "asset/asset/taply.png",
-      summary: "An aquarium game connected to smart faucets: a household's water usage becomes part of the gameplay, to encourage saving water.",
-      details: [
-        "Capstone project built by a team; I am the backend programmer.",
-        "I build the server-side parts that receive and handle the usage data sent by the smart faucets.",
-        "I also do quality assurance: testing features and checking that fixes work before the team moves on."
-      ],
-      repo: "", demo: "" },
-    { title: "Dorm ni Kuya", category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
-      stack: ["PHP", "HTML", "CSS", "JavaScript"], image: "asset/asset/dorm.png",
-      summary: "A web-based dorm information system where visitors can learn about the dorm and send accommodation inquiries.",
-      details: [
-        "I was the frontend programmer: I built the pages and the interface visitors use.",
-        "Made with PHP, HTML, CSS and JavaScript for a course on event-driven programming, so the pages react to user actions like clicks and form submissions.",
-        "The code is on GitHub; it has not been deployed online."
-      ],
-      repo: "https://github.com/dpcmd/dorm", demo: "" },
-    { title: "2K2J",  category: "Development", year: "2026", status: "Not deployed", role: "Frontend programmer",
-      stack: ["PHP", "HTML", "CSS", "JavaScript"], image: "asset/asset/2k2j.jpg",
-      summary: "A web-based system built for a Web Development course.",
-      details: [
-        "I was the frontend programmer: I built the pages and the interactive parts users see.",
-        "Made with PHP, HTML, CSS and JavaScript, working as a team and sharing the code through GitHub.",
-        "It has not been deployed online; the full code is on GitHub."
-      ],
-      repo: "https://github.com/hyanarchy/2k2j-system", demo: "" },
     { title: "VTHK", featured: true, category: "Media Creation", year: "2026", status: "Ongoing", role: "Head Creatives",
       stack: ["Canva", "Photoshop"],
       image: "asset/asset/INTERSECTION1.jpg",
@@ -131,8 +91,7 @@ const DATA = {
         "That meant planning and preparing the shoot, directing the production, and overseeing the editing and finishing of the film."
       ],
       note: "The full film is not publicly released, since it was made for and shown only at our school.",
-      trailer: "https://www.facebook.com/reel/1892957314745360",
-      repo: "", demo: "" },
+      trailer: "https://www.facebook.com/reel/1892957314745360" },
     { title: "NFT Projects", category: "Media Creation", year: "2022", status: "Completed", role: "Content Creator",
       stack: ["Graphic Design", "Canva", "Photoshop"],
       image: "asset/asset/rebels.jpg",
@@ -152,7 +111,7 @@ const DATA = {
         { label: "Shamanz", url: "https://medium.com/@shamanzs" }
       ] },
     { title: "Bytecode Studios", wide: true, featured: true, category: "Management", year: "2026", status: "Ongoing", role: "Project manager",
-      stack: ["Jira", "Scrum", "Discord"], 
+      stack: ["Jira", "Scrum", "Discord"],
       image: "asset/asset/bytecodestudios-logo.jpg",
       images: ["asset/asset/jira2.png", "asset/asset/jira.png"],
       summary: "A tabletop game that the team is developing into a digital hybrid version.",
@@ -161,7 +120,7 @@ const DATA = {
         "I run Scrum: I plan each sprint and assign the tasks in Jira.",
         "I track progress in Jira and keep the team in sync on Discord."
       ],
-      repo: "", wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki", demo: "" },
+      wiki: "https://mindweaver.fandom.com/wiki/MindWeaver_Wiki" },
     { title: "VTHK", featured: true, wide: true, category: "Management", year: "2026", status: "Ongoing", role: "Content and Email Management",
       stack: ["Trello", "Email", "Messenger"],
       image: "asset/asset/vthk.png",
@@ -179,23 +138,18 @@ const DATA = {
   background: [
     { group: "Experience", items: [
       { title: "Head Creatives Officer", text: "Valenzuela Tigers Haud Ka'Bu", meta: "2026" },
-      { title: "Social Media and Content Creation", text: "Insightblitz Solutions, @xis_NFT", meta: "2025" },
+      { title: "Social Media and Content Creation", text: "Insightblitz Solutions, @Xis_NFT", meta: "2025" },
       { title: "Digital Marketing", text: "NFT Communities", meta: "2022" }
-    ] },
-    { group: "Competition", items: [
-      { title: "C# Programming · Participant", text: "PLV ITlympics, Problem solving", meta: "2025" },
-      { title: "Networking · Finalist", text: "PLV ITlympics, Hardware and Cisco Packet Tracer", meta: "2026" }
     ] },
     { group: "Certificates", items: [
       { title: "Introduction to Digital Marketing", text: "TESDA, Digital Marketing lll", meta: "2026", file: "asset/asset/digital_marketing_cert.pdf" },
-      { title: "Web Development Fundamentals", text: "IBM", meta: "2026", file: "asset/asset/IBM_cert.pdf" },
       { title: "Fundamentals of Artificial Intelligence", text: "TESDA, Amazon Web Services", meta: "2026", file: "asset/asset/ai_cert.pdf" }
-    ] },
+    ] },  
+  
     { group: "Seminars", items: [
       { title: "Unlocking Security: The Power of Identity & Access Management", text: "Seminars and Colloquia", meta: "2025", file: "asset/asset/seminars-and-colloquia.jpg" }
     ] }
   ],
-
   /* --- "How we'd work together" steps --- */
   process: [
     { title: "You send a message", text: "Tell me the task, the deadline and the tools you use." },
@@ -205,7 +159,6 @@ const DATA = {
   ]
 };
 /* ===================== end of editable block ===================== */
-
 
 /* ==========================================================================
    2. Helpers
